@@ -16,9 +16,13 @@ jobs:
         sudo apt-get install -y cmake g++ libgtest-dev
       
     - name: Configure CMake
-      run: |
-        rm -rf build/
-        cmake -B build -DCMAKE_BUILD_TYPE=Release
+  run: |
+    # Абсолютная очистка ВСЕХ кэш-файлов
+    find . -name "CMakeCache.txt" -delete 2>/dev/null || true
+    find . -name "CMakeFiles" -type d -exec rm -rf {} + 2>/dev/null || true
+    rm -rf build/
+    # Создаем чистую сборку
+    cmake -B build -DCMAKE_BUILD_TYPE=Release
       
     - name: Build
       run: cmake --build build --config Release --parallel 2
