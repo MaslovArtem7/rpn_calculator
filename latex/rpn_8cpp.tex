@@ -1,0 +1,55 @@
+\doxysection{src/rpn.cpp File Reference}
+\hypertarget{rpn_8cpp}{}\label{rpn_8cpp}\index{src/rpn.cpp@{src/rpn.cpp}}
+{\ttfamily \#include $<$stack$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$stdexcept$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$cctype$>$}\newline
+Include dependency graph for rpn.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rpn_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{rpn_8cpp_a56be429255d682ade59a81e806b07752}{evaluate\+\_\+rpn}} (const std\+::string \&expression)
+\begin{DoxyCompactList}\small\item\em Evaluates a mathematical expression in Reverse Polish Notation (RPN). ~\newline
+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{rpn_8cpp_a56be429255d682ade59a81e806b07752}\label{rpn_8cpp_a56be429255d682ade59a81e806b07752} 
+\index{rpn.cpp@{rpn.cpp}!evaluate\_rpn@{evaluate\_rpn}}
+\index{evaluate\_rpn@{evaluate\_rpn}!rpn.cpp@{rpn.cpp}}
+\doxysubsubsection{\texorpdfstring{evaluate\_rpn()}{evaluate\_rpn()}}
+{\footnotesize\ttfamily double evaluate\+\_\+rpn (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{expression }\end{DoxyParamCaption})}
+
+
+
+Evaluates a mathematical expression in Reverse Polish Notation (RPN). ~\newline
+ 
+
+
+\begin{DoxyParams}{Parameters}
+{\em expression} & A string containing the RPN expression (e.\+g., "{}2 3 +"{}). ~\newline
+ Tokens must be separated by spaces. ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+double The result of the evaluated expression. ~\newline
+ 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::invalid\+\_\+argument} & Thrown if the expression is invalid, ~\newline
+ contains an unknown operator, or attempts division by zero. ~\newline
+ \\
+\hline
+\end{DoxyExceptions}
