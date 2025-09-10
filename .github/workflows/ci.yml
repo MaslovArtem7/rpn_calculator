@@ -15,16 +15,19 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y cmake g++ libgtest-dev
       
-    - name: Build and test
+    - name: Force clean build directory
       run: |
-        # Удаляем старый кэш CMake, если он существует
-        rm -f CMakeCache.txt
-        rm -rf build/
-        
-        # Создаем чистую сборку
+        # Полная очистка ВСЕХ следов CMake
+        rm -rf build/ CMakeCache.txt CMakeFiles/ 2>/dev/null || true
+        find . -name "CMakeCache.txt" -delete 2>/dev/null || true
+        find . -type d -name "CMakeFiles" -exec rm -rf {} + 2>/dev/null || true
+      
+    - name: Build project
+      run: |
         cmake -B build -DCMAKE_BUILD_TYPE=Release
         cmake --build build
-        
-        # Запускаем тесты
+      
+    - name: Run tests
+      run: |
         cd build
         ctest --output-on-failure
