@@ -15,15 +15,16 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y cmake g++ libgtest-dev
       
-    - name: Build and test in clean environment
+    - name: Build and test
       run: |
-        # Временная чистая директория
-        TEMP_DIR="/tmp/$(date +%s)"
-        git clone . "$TEMP_DIR"
-        cd "$TEMP_DIR"
+        # Удаляем старый кэш CMake, если он существует
+        rm -f CMakeCache.txt
+        rm -rf build/
         
-        # Сборка и тесты
+        # Создаем чистую сборку
         cmake -B build -DCMAKE_BUILD_TYPE=Release
         cmake --build build
+        
+        # Запускаем тесты
         cd build
         ctest --output-on-failure

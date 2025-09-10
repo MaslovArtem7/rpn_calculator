@@ -1,5 +1,19 @@
+# CMake
 CMakeCache.txt
-build/
 CMakeFiles/
-*.o
+build/
+*.cmake
+Makefile
 *.a
+*.so
+*.dylib
+
+# Скомпилированные файлы
+*.o
+*.obj
+*.out
+*.exe
+
+# Директории сборки
+bin/
+lib/
