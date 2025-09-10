@@ -15,19 +15,23 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y cmake g++ libgtest-dev
       
-    - name: Force clean build directory
+    - name: Nuclear cleanup
       run: |
-        # Полная очистка ВСЕХ следов CMake
-        rm -rf build/ CMakeCache.txt CMakeFiles/ 2>/dev/null || true
-        find . -name "CMakeCache.txt" -delete 2>/dev/null || true
+        # АБСОЛЮТНАЯ очистка всех следов CMake
+        find . -name "CMakeCache.txt" -delete
+        find . -name "*.cmake" -delete
         find . -type d -name "CMakeFiles" -exec rm -rf {} + 2>/dev/null || true
+        find . -type d -name "build" -exec rm -rf {} + 2>/dev/null || true
+        rm -rf build/ CMakeFiles/ 2>/dev/null || true
+        echo "Cleanup completed"
       
     - name: Build project
       run: |
         cmake -B build -DCMAKE_BUILD_TYPE=Release
         cmake --build build
+        echo "Build completed"
       
     - name: Run tests
       run: |
         cd build
-        ctest --output-on-failure
+        ctest --verbose --output-on-failure
