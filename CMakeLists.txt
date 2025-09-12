@@ -24,3 +24,6 @@ target_link_libraries(test_rpn rpn_lib GTest::GTest GTest::Main)
 
 # Добавление теста в CTest (ТОЛЬКО ОДИН РАЗ!)
 add_test(NAME RPNTests COMMAND test_rpn)
+
+# Добавьте в конец вашего CMakeLists.txt
+enable_testing()

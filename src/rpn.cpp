@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <cctype>
+#include <cmath> // Добавляем для функции pow()
 
 double evaluate_rpn(const std::string& expression) {
     std::stack<double> stack;
@@ -53,6 +54,9 @@ double evaluate_rpn(const std::string& expression) {
                     }
                     result = a / b;
                     break;
+                case '^': // Добавляем операцию возведения в степень
+                    result = std::pow(a, b);
+                    break;
                 default:
                     throw std::invalid_argument("Unknown operator: " + token);
             }
@@ -67,8 +71,4 @@ double evaluate_rpn(const std::string& expression) {
     
     return stack.top();
 }
-
-
-
-
 
